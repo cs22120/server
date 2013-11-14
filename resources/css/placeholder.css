@@ -1,0 +1,10 @@
+@import url(http://fonts.googleapis.com/css?family=Average+Sans);
+
+body {
+  font-family: "Average Sans",sans-serif;
+}
+
+.main {
+  max-width:800px;
+  margin: 20% auto 0 !important;
+}
