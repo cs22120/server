@@ -14,7 +14,15 @@ require_once "$ROOT/includes/defaultSettings.php";
 
 # load custom settings
 # require will crash on failure, include merely produces a warning
-//include_once "$ROOT/config.php";
+if ( file_exists( "$ROOT/config.php" ) ) {
+  include_once "$ROOT/config.php";
+} else {
+  # no config means no install
+  require_once "$ROOT/includes/notInstalled.php";
+}
+
+# load useful files
+require_once "$ROOT/includes/localization.php";
 
 # load main class
 require_once "$ROOT/includes/walkingTourCreator.php";

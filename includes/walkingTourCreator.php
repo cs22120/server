@@ -14,7 +14,8 @@ class WalkingTourCreator {
   public function render( $templateName ) {
     $ROOT = '/home/zuzak/git/group-project/server';
     $page = file_get_contents( "$ROOT/views/$templateName" );
-    echo $page;
+    //echo $page;
+    echo t('greeting');
   }
 
   /**
