@@ -14,8 +14,7 @@ class WalkingTourCreator {
   public function render( $templateName ) {
     $ROOT = '/home/zuzak/git/group-project/server';
     $page = file_get_contents( "$ROOT/views/$templateName" );
-    //echo $page;
-    echo t('greeting');
+    return $page;
   }
 
   /**
@@ -23,8 +22,7 @@ class WalkingTourCreator {
    * @return void
    */
   function run() {
-    $this->render("home.html");
+    $this -> render( 'home.html' );
   }
 
 }
-    
