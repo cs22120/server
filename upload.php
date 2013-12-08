@@ -117,10 +117,10 @@ foreach ( $route->locations as &$location ) {
   if ( !is_numeric( $location->timestamp ) ) {
     output( 23, "cannot parse timestamp $index" );
   }
-  if ( !is_array( $location->descriptions ) {
+  if ( !is_array( $location->descriptions ) ) {
     output( 24, "location $index has bad descriptions" );
   }
-  if ( !is_array( $location->images ) {
+  if ( !is_array( $location->images ) ) {
     output( 25, "location $index has bad images" );
   }
 }
