@@ -25,7 +25,7 @@ $secret = 'swordfish';
 # disallow GETs
 if ( $_SERVER['REQUEST_METHOD'] != 'POST' ) {
   header( 'HTTP/1.0 405 Method Not Allowed' );
-  output( 2, 'only POST is accepted', true );
+  output( 2, 'only POST is accepted; received ' . $_SERVER['REQUEST_METHOD'], true );
 }
 
 # catch empty POST requests
@@ -183,6 +183,6 @@ function output ( $code, $msg, $suppress = false ) {
     $data['data'] = null;
   }
   # sending current API version will aid troubleshooting
-  $data['version'] = '0.0.2';
+  $data['version'] = '0.1.0';
   die( json_encode( $data, JSON_PRETTY_PRINT ) );
 }
