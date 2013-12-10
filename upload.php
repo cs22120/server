@@ -37,7 +37,7 @@ if ( count( $_POST ) == 0 ) {
 # although we aren't using them, we still need one to
 # send the JSON body; 'data' has been arbitrarily chosen
 if ( !isset( $_POST['data'] ) ) {
-  output( 4, 'data was not POSTed correctly' );
+  output( 4, 'data was not POSTed correctly (use the key "data")' );
 }
 
 # attempt to convert the JSON into an object
@@ -49,10 +49,10 @@ $data = json_decode( $json );
 # what the error was
 if ( !$data ) {
   if ( json_last_error_msg() ) {
-    output( 5, 'malformed JSON (' . json_last_error_msg() . ')' );
+    output( 5, 'unable to parse JSON (' . json_last_error_msg() . ')' );
   } else {
     # fall-through in case PHP couldn't find an error
-    output( 5, 'malformed JSON' );
+    output( 5, 'unable to parse JSON' );
   }
 }
 
@@ -70,13 +70,13 @@ if ( property_exists( $data, 'authorization' ) ) {
   # this check serves as a quick way to sanity-check
   # whether a string is likely to be a hash or not
   if ( strlen( $auth->hash ) != 40 ) {
-    output( 9, 'hash is wrong length' );
+    output( 9, 'hash is wrong length (are you sure it is SHA1?)' );
   }
   $hash = sha1 ( $secret . $auth->salt );
   # hashing is case sensitive; as PHP returns lowercase
   # we need to ensure the user's hash is also lowercase
   if ( $hash != strtolower( $auth->hash ) ) {
-    output( 10, 'invalid credentials' );
+    output( 10, 'invalid credentials (did you calculate the hash correctly?)' );
   }
 } else {
   # 401 is not applicable as we are not using authentication
@@ -154,10 +154,10 @@ foreach ( $route->locations as &$location ) {
     output( 23, "cannot parse timestamp $index" );
   }
   if ( !is_array( $location->descriptions ) ) {
-    output( 24, "location $index has bad descriptions" );
+    output( 24, "location $index has bad descriptions (not an array)" );
   }
   if ( !is_array( $location->images ) ) {
-    output( 25, "location $index has bad images" );
+    output( 25, "location $index has bad images (not an array)" );
   }
 }
 
@@ -183,6 +183,6 @@ function output ( $code, $msg, $suppress = false ) {
     $data['data'] = null;
   }
   # sending current API version will aid troubleshooting
-  $data['version'] = '0.1.0';
+  $data['version'] = '0.1.1';
   die( json_encode( $data, JSON_PRETTY_PRINT ) );
 }
