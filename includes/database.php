@@ -17,9 +17,9 @@ function createDatabase() {
 "    id int NOT NULL, walkId int NOT NULL, latitude float(12), longitude float(12), timestamp float(12)," .
 "    PRIMARY KEY (id), FOREIGN KEY (WalkId) REFERENCES tbl_routes(id));" .
 "  CREATE TABLE tbl_places (" .
-"    id int NOT NULL, locationId int NOT NULL, description varchar(255)," . 
+"    id int NOT NULL, locationId int NOT NULL, description varchar(255)," .
 "    PRIMARY KEY (id), FOREIGN KEY (locationId) REFERENCES tbl_locations(id));" .
-" CREATE TABLE tbl_images (" . 
+" CREATE TABLE tbl_images (" .
 "   id int NOT NULL, placeId int NOT NULL, photoName varchar(255)," .
 "   PRIMARY KEY (id), FOREIGN KEY (placeId) REFERENCES tbl_places(id));";
 

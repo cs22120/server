@@ -42,4 +42,4 @@ if ( file_exists ( "$WD/config.php" ) ) {
 }
 
 require_once( 'includes/templates.php' );
-render( 'message', [ 'Successful render', 'Nothing to put here though' ] );
+render( 'placeholder' );

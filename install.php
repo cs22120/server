@@ -63,7 +63,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
   if ( $_POST['createtables'] ) {
     require_once( 'includes/database.php' );
     $creator = createDatabase();
-    if ($creator === FALSE) {
+    if ( $creator === FALSE ) {
       die( render ( 'message', ['Table creation failed',
         'We managed to save the configuration but were unable to automatically create the tables.'  ] ) );
     }
