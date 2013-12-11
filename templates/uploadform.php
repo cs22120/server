@@ -3,8 +3,13 @@
   <h1>Post Tester</h1>
 </div>
 <form method="POST" action="upload.php">
+    <p class="lead">
+        Use this form to test JSON uploading to the server.
+    </p>
+    <p>Anything you type below will be sent as the <code>data</code> parameter in a POST request to the upload script.</p>
+    <p>Note that this live: anything you submit, if valid, <em>will</em> be submitted and stored into the database.</p>
     <div class="form-group">
-        <textarea style="font-family:monospace" class="form-control" name="data">
+        <textarea style="font-family:monospace; height:600px;" class="form-control" name="data">
 {
     "authorization": {
         "hash": "427339AC646C25EFFA6B624CE776FB4FEE99CEDA",
