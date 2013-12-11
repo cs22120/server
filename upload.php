@@ -162,7 +162,20 @@ foreach ( $route->locations as &$location ) {
 }
 
 # all tests passed; output the data as confirmation
-output( 0, $data->walk );
+/* commented out for now
+ * require_once 'includes/database.php';
+ * $dbInput = inputWalk($data->walk);
+ */
+if ($dbInput === FALSE) {
+  # saving to the database failed
+  # this is a server error, so set 500
+  header('HTTP/1.0 500 Internal Server Error');
+  # this is not a client issue but is still an error
+  output( 26, 'unable to save to database' , true);
+} else {
+  # an error code of 0 is not an error
+  output( 0, $data->walk );
+}
 
 function output ( $code, $msg, $suppress = false ) {
   if ( $code == 0 ) { # 0 means a success

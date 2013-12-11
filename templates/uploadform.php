@@ -21,8 +21,8 @@
         "longDesc": "A walk around London, viewing sights such as Downing Street, Trafalgar Square, and Scotland Yard",
         "locations": [
             {
-                "latitude": 51.503396,
-                "longitude": 0.127640,
+                "latitude": 51.5034,
+                "longitude": 0.1276,
                 "timestamp": 0,
                 "descriptions": [
                     "10 Downing Street"
@@ -33,8 +33,8 @@
                 ]
             },
             {
-                "latitude": 51.506758,
-                "longitude": 0.128692,
+                "latitude": 51.5068,
+                "longitude": 0.1287,
                 "timestamp": 20,
                 "descriptions": [
                     "Admiralty Arch"
@@ -43,8 +43,8 @@
                 ]
             },
             {
-                "latitude": 51.49861,
-                "longitude": 0.13305,
+                "latitude": 51.4986,
+                "longitude": 0.1331,
                 "timestamp": 60,
                 "descriptions": [
                     "New Scotland Yard",
