@@ -1,10 +1,7 @@
 <?php
 include 'header.php';
 ?>
-    <div class="panel panel-info">
-        <div class="panel-heading">
-          <?php echo $data[0]; ?>
-        </div>
+  <h1><?php echo $data[0] ?></h1>
     <div class="panel-body">
         <?php echo $data[1]; ?>
     </div>
