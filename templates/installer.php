@@ -15,10 +15,19 @@
     </div>
     <div class="form-group">
       <div class="col-sm-3">
+        <label class="control-label" for="dbName">Database name</label>
+     </div>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" name="dbname" id="dbName" placeholder="walkingtour" required>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-3">
         <label class="control-label" for="dbUsername">Database username</label>
      </div>
     <div class="col-sm-9">
-      <input type="text" class="form-control" name="database" id="dbUsername" placeholder="root" required>
+      <input type="text" class="form-control" name="username" id="dbUsername" placeholder="root" required>
     </div>
     </div>
 
