@@ -166,12 +166,12 @@ foreach ( $route->locations as &$location ) {
  * require_once 'includes/database.php';
  * $dbInput = inputWalk($data->walk);
  */
-if ($dbInput === FALSE) {
+if ( $dbInput === FALSE ) {
   # saving to the database failed
   # this is a server error, so set 500
-  header('HTTP/1.0 500 Internal Server Error');
+  header( 'HTTP/1.0 500 Internal Server Error' );
   # this is not a client issue but is still an error
-  output( 26, 'unable to save to database' , true);
+  output( 26, 'unable to save to database' , true );
 } else {
   # an error code of 0 is not an error
   output( 0, $data->walk );
