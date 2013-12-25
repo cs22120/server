@@ -30,10 +30,10 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
   # installation is a go! (hopefully)
 
   $config = "<?php\n" .
-    '$DB_ADDR = "' . $_POST['address'] . "\";\n" .
-    '$DB_PASS = "' . $_POST['password'] . "\";\n" .
-    '$DB_USER = "' . $_POST['username'] . "\";\n" .
-    '$DB_NAME = "' . $_POST['dbname'] . "\";\n?>";
+    "\$DB_ADDR = '" . $_POST['address'] . "';\n" .
+    "\$DB_PASS = '" . $_POST['password'] . "';\n" .
+    "\$DB_USER = '" . $_POST['username'] . "';\n" .
+    "\$DB_NAME = '" . $_POST['dbname'] . "';\n?>";
 
   $file = fopen( 'config.php', 'w' );
 

@@ -11,6 +11,6 @@ if ( !defined( 'ENTRYPOINT' ) ) {
   exit( 1 );
 }
 
-function render ( $templateName, $data ) {
+function render ( $templateName, $data = FALSE ) {
   require( "templates/$templateName.php" );
 }
