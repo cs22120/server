@@ -53,10 +53,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
       'We tried to write to the configuration file, but failed.</p>' .
       '<p>Please place the following into <code>config.php</code>:</p>' .
       '<pre>' . htmlentities( $config ) . '</pre>'] ) );
-  } else {
-    header( 'HTTP/1.0 301 Moved Permanently' );
-    header( 'Location: index.php' );
-    die();
   }
 
 
@@ -68,7 +64,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
         'We managed to save the configuration but were unable to automatically create the tables.'  ] ) );
     }
   }
-        header( 'HTTP/1.0 301 Moved Permanently' );
-        header( 'Location: index.php' );
+
+  header( 'HTTP/1.0 301 Moved Permanently' );
+  header( 'Location: index.php' );
 
 }
