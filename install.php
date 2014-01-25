@@ -22,46 +22,51 @@ if ( file_exists( 'config.php' ) ) {
 
 if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
   # user wants wizard
-  render( 'installer' );
+  # check if config is already there
+  if ( file_exists( 'config.php' ) ) {
+	render( 'installtables' );
+  } else {
+    render( 'installer' );
+  }
+
 } else if ( $_SERVER['REQUEST_METHOD'] != 'POST' ) {
   header( 'HTTP/1.0 405 Method Not Allowed' );
   die( render( 'message', ['HTTP 405: Method Not Allowed', 'Please use POST or GET.'] ) );
 } else {
   # installation is a go! (hopefully)
 
-  $config = "<?php\n" .
-    "\$DB_ADDR = '" . $_POST['address'] . "';\n" .
-    "\$DB_PASS = '" . $_POST['password'] . "';\n" .
-    "\$DB_USER = '" . $_POST['username'] . "';\n" .
-    "\$DB_NAME = '" . $_POST['dbname'] . "';\n?>";
+  if ($_POST['createtables'] === FALSE) {
+	$config = "<?php\n" .
+	  "\$DB_ADDR = '" . $_POST['address'] . "';\n" .
+	  "\$DB_PASS = '" . $_POST['password'] . "';\n" .
+	  "\$DB_USER = '" . $_POST['username'] . "';\n" .
+	  "\$DB_NAME = '" . $_POST['dbname'] . "';\n?>";
 
-  $file = fopen( 'config.php', 'w' );
+	$file = fopen( 'config.php', 'w' );
 
-  if ( $file === FALSE ) {
-    # unable to open file
-     die( render ( 'message', ['Automatic installation failed',
-       'We were unable to open the configuration file for writing.</p>' .
-       '<p>Please place the following into <code>config.php</code></p>' .
-       '<pre>' . htmlentities( $config ) . '</pre>'] ) );
-  }
+	if ( $file === FALSE ) {
+	  # unable to open file
+	   die( render ( 'message', ['Automatic installation failed',
+		 'We were unable to open the configuration file for writing.</p>' .
+		 '<p>Please place the following into <code>config.php</code></p>' .
+		 '<pre>' . htmlentities( $config ) . '</pre>'] ) );
+	}
 
-  $write = fwrite( $file, $config );
-  fclose( $file );
+	$write = fwrite( $file, $config );
+	fclose( $file );
 
-  if ( $write === FALSE ) {
-    die( render ( 'message', ['Automatic installation failed',
-      'We tried to write to the configuration file, but failed.</p>' .
-      '<p>Please place the following into <code>config.php</code>:</p>' .
-      '<pre>' . htmlentities( $config ) . '</pre>'] ) );
-  }
-
-
-  if ( $_POST['createtables'] ) {
+	if ( $write === FALSE ) {
+	  die( render ( 'message', ['Automatic installation failed',
+		'We tried to write to the configuration file, but failed.</p>' .
+		'<p>Please place the following into <code>config.php</code>:</p>' .
+		'<pre>' . htmlentities( $config ) . '</pre>'] ) );
+	}
+  } else {
     require_once( 'includes/database.php' );
     $creator = createDatabase();
     if ( $creator === FALSE ) {
       die( render ( 'message', ['Table creation failed',
-        'We managed to save the configuration but were unable to automatically create the tables.'  ] ) );
+        'We tried to create the MySQL tables for you, but something went wrong. Please try again'  ] ) );
     }
   }
 

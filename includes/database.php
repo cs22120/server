@@ -9,25 +9,25 @@ require dirname( __FILE__ ) . '/../config.php';
 function createDatabase() {
   $db = openConnection();
 
-  $sql = "" .
-" CREATE TABLE tbl_routes (" .
-"   id int NOT NULL AUTO_INCREMENT, title varchar(255), shortDesc varchar(255), longDesc varchar(255)," .
-"   hours float(12), distance float(12), PRIMARY KEY (id));" .
-" CREATE TABLE tbl_locations (" .
-"    id int NOT NULL AUTO_INCREMENT, walkId int NOT NULL, latitude float(12), longitude float(12), timestamp float(12)," .
-"    PRIMARY KEY (id), FOREIGN KEY (WalkId) REFERENCES tbl_routes(id));" .
-"  CREATE TABLE tbl_places (" .
-"    id int NOT NULL AUTO_INCREMENT, locationId int NOT NULL, description varchar(255)," .
-"    PRIMARY KEY (id), FOREIGN KEY (locationId) REFERENCES tbl_locations(id));" .
-" CREATE TABLE tbl_images (" .
-"   id int NOT NULL AUTO_INCREMENT, placeId int NOT NULL, photoName varchar(255)," .
-"   PRIMARY KEY (id), FOREIGN KEY (placeId) REFERENCES tbl_places(id));";
+  $sql = <<<'SQL'
+  CREATE TABLE tbl_routes (
+    id int NOT NULL AUTO_INCREMENT, title varchar(255), shortDesc varchar(255), longDesc varchar(255),
+    hours float(12), distance float(12), PRIMARY KEY (id));
+  CREATE TABLE tbl_locations (
+     id int NOT NULL AUTO_INCREMENT, walkId int NOT NULL, latitude float(12), longitude float(12), timestamp float(12),
+     PRIMARY KEY (id), FOREIGN KEY (WalkId) REFERENCES tbl_routes(id));
+   CREATE TABLE tbl_places (
+     id int NOT NULL AUTO_INCREMENT, locationId int NOT NULL, description varchar(255),
+     PRIMARY KEY (id), FOREIGN KEY (locationId) REFERENCES tbl_locations(id));
+  CREATE TABLE tbl_images (
+    id int NOT NULL AUTO_INCREMENT, placeId int NOT NULL, photoName varchar(255),
+    PRIMARY KEY (id), FOREIGN KEY (placeId) REFERENCES tbl_places(id));
+SQL;
 
   return executeSql( $sql );
 }
 
 function inputWalk( $walk ) {
-  echo "<!-- DEVELOPMENT MODE: contact dog2 if you need to use this -->\n";
   # TODO
   # we need to escape the inputs to proof against SQL injections
   # see rfc 4389 2.5.2
@@ -50,6 +50,7 @@ function inputWalk( $walk ) {
     $sql = null; # we are reusing a variable; clearing it to be safe
     $query = "SELECT * FROM tbl_routes WHERE title=$values[1];";
     $sql =  mysqli_query( $db, $query );
+    if ( $sql === FALSE ) { return $query; }
     $walkId = fetchID( $sql );
 
     foreach ( $walk -> locations as &$location ) {
@@ -64,16 +65,15 @@ function inputWalk( $walk ) {
       ];
       $query = "INSERT INTO tbl_locations VALUES (" . implode( $values, ',' ) . ");";
       $sql =  mysqli_query( $db, $query );
+      if ( $sql === FALSE ) { return $query; }
       # now need to get the locationId
       $locID = mysqli_insert_id( $db );
 
       foreach ( $location -> descriptions as &$description ) {
         $description = mysqli_real_escape_string( $db, $description );
-        $query = "INSERT INTO tbl_places VALUES (NULL, $locID, '$description');";
-        var_dump( $query );
+        $query = "INSERT INTO tbl_places VALUES (null, $locID, '$description');";
         $sql = mysqli_query( $db, $sql );
-        var_dump( $sql );
-        var_dump( mysqli_error( $db ) );
+        if ( $sql === FALSE ) { return mysqli_error( $db ); }
       }
 
 
@@ -83,8 +83,10 @@ function inputWalk( $walk ) {
       }
     }
 
+    # everything worked
+    return 'SUCCESS'; # TODO: make this less hackish
   } else {
-    echo 'FAIL';
+    return $query;
   }
 
 }

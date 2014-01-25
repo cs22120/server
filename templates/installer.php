@@ -51,8 +51,11 @@
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-9">
-           <button type="submit" class="btn btn-primary">Begin installation</button> </form>
+        <div class="col-sm-offset-3 col-sm-3">
+           <button type="submit" class="btn btn-primary">Install configuration</button>
+        </div>
+        <div class="col-sm-offset-3 col-sm-6">
+            <button type="submit" class="btn btn-info">Install tables</button>
         </div>
     </div>
 </form>
