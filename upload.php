@@ -163,7 +163,7 @@ foreach ( $route->locations as &$location ) {
 
 # all tests passed; output the data as confirmation
 require_once 'includes/database.php';
-$dbInput = inputWalk($data->walk);
+$dbInput = inputWalk( $data->walk );
 
 if ( $dbInput !== 'SUCCESS' ) {
   # saving to the database failed

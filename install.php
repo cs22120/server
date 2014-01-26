@@ -35,7 +35,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
 } else {
   # installation is a go! (hopefully)
 
-  if ($_POST['createtables'] === FALSE) {
+  if ( $_POST['createtables'] === FALSE ) {
 	$config = "<?php\n" .
 	  "\$DB_ADDR = '" . $_POST['address'] . "';\n" .
 	  "\$DB_PASS = '" . $_POST['password'] . "';\n" .
