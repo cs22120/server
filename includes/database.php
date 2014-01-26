@@ -31,7 +31,7 @@ function createDatabase() {
 SQL;
 
   $query = executeSql( $sql );
-  if (is_string($query)) {
+  if (!is_string($query)) {
     return FALSE;
   } else {
     return $query;
