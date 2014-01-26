@@ -48,7 +48,7 @@ if ( $result === FALSE ) {
   die( 'Unable to fetch walks from database.' );
 }
 $rows = "";
-while ( $walk = $result->fetch_array() ) {
+while ( $walk = $result->fetch_assoc() ) {
   # TODO: this is horrible, needs fixing
   $rows .= '<tr><td>';
   $rows .= '<a href="walks.php?walk=';
