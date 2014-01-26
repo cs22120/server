@@ -6,6 +6,12 @@
  */
 
 require dirname( __FILE__ ) . '/../config.php';
+/**
+ * This function runs the query that will attempt to create the correct tables
+ * in the database.
+ *
+ * @return a string detailing errors encountered, or FALSE if the query worked.
+ */
 function createDatabase() {
   $db = openConnection();
 
@@ -24,9 +30,20 @@ function createDatabase() {
     PRIMARY KEY (id), FOREIGN KEY (placeId) REFERENCES tbl_places(id));
 SQL;
 
-  return executeSql( $sql );
+  $query = executeSql( $sql );
+  if (is_string($query)) {
+    return FALSE;
+  } else {
+    return $query;
+  }
 }
 
+/**
+ * This function inputs a walk into the database.
+ *
+ * @param a walk object, as created by the upload.php function
+ * @return a string describing the error, or SUCCESS if things worked
+ */
 function inputWalk( $walk ) {
   # TODO
   # we need to escape the inputs to proof against SQL injections
@@ -91,6 +108,12 @@ function inputWalk( $walk ) {
 
 }
 
+/**
+ * This function opens a connection to the database.
+ * @return an active database connection.
+ *
+ * Use closeConnection() to close it again.
+ */
 function openConnection() {
   global $DB_ADDR, $DB_USER, $DB_PASS, $DB_NAME;
   $db = mysqli_connect( $DB_ADDR, $DB_USER, $DB_PASS, $DB_NAME );
@@ -101,17 +124,41 @@ function openConnection() {
   return $db;
 }
 
+/**
+ * Executes an SQL statement.
+ * @param the SQL to execute
+ * @return the result of the action
+ *
+ * On success it will return a mysqli_result() object when the SQL statement is
+ * a SELECT, SHOW, DESCRIBE or EXPLAIN. Other successes will return TRUE.
+ *
+ * Failures will return a string explaining the error. Use is_object() to 
+ * discern between the error string and a result.
+ */
 function executeSql( $sql ) {
   $db = openConnection();
   $query = mysqli_query( $db, $sql );
+  if ($query === FALSE) {
+    $query = mysqli_error($db);
+  }
   closeDatabase( $db );
- return $query;
+  return $query;
 }
 
+/**
+ * Closes an active database connection.
+ * @param the database connection to close.
+ */
 function closeDatabase( $db ) {
   mysqli_close( $db );
 }
 
+/**
+ * Fetches the first field of the first row of a result
+ * @param The result to fetch
+ * @return the first field of the first row
+ * @deprecated
+ */
 function fetchID( mysqli_result $result ) {
   return $result->fetch_row()[0];
 }

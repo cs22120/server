@@ -5,12 +5,16 @@
  * @file
  */
 
+#TODO: this is not a valid entry point, stop people from loading it in their
+#browsers.
+
 require_once 'includes/database.php';
+require( 'includes/templates.php' );
 
 $result = executeSql( 'SELECT * from `tbl_routes`' );
-if ( $result === FALSE ) {
+if ( is_object($result) === FALSE ) {
+  render( 'message', ['Database error', 'We were unable to get a list of walks.', $result ]);
   # something went wrong
-  die( 'Unable to fetch walks from database.' );
 }
 $rows = "";
 while ( $walk = $result->fetch_assoc() ) {
@@ -24,5 +28,4 @@ while ( $walk = $result->fetch_assoc() ) {
   $rows .= $walk['shortDesc'];
   $rows .= '</td></tr>';
 }
-require( 'includes/templates.php' );
 render( 'homepage', $rows );

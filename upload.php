@@ -176,6 +176,15 @@ if ( $dbInput !== 'SUCCESS' ) {
   output( 0, $data->walk );
 }
 
+/**
+ * Formats and sends JSON output to the client.
+ *
+ * @param the error code
+ * @param a human readable error message
+ * @param whether to suppress the 400 error (optional, default false)
+ *
+ * This function contains a die().
+ */
 function output ( $code, $msg, $suppress = false ) {
   if ( $code == 0 ) { # 0 means a success
     $data['success'] = true;
