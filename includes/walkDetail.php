@@ -19,7 +19,15 @@ if ( !is_numeric( $id ) ) {
   die();
 }
 
-$query = executeSql( "SELECT * FROM tbl_routes, tbl_places WHERE (tbl_routes.id = $id)" );
+$sql = <<<SQL
+  SELECT * FROM tbl_routes
+  INNER JOIN tbl_locations
+  ON tbl_routes.id = tbl_locations.walkId
+  INNER JOIN tbl_places
+  ON tbl_locations.id = tbl_places.locationId
+SQL;
+
+$query = executeSql($sql);
 if ( is_object( $query ) === FALSE ) {
   render( 'message', ['Database error', 'We were unable to get the details of your walk.', $query] );
   die();
@@ -34,9 +42,16 @@ while ( $walk = $query->fetch_assoc() ) {
   if ( !isset( $body ) ) {
     $body = "";
     $body .= '<h1>' . $walk['title'] . '</h1>';
-    $body .= '<p class="lead">' . $walk['longDesc'] . '</p><ol>';
+    $body .= '<p class="lead">' . $walk['longDesc'] . '</p>';
+    $body .= '<table class="table table-striped">';
+    $body .= '<tr><th>&deg;N of the Equator</th><th>&deg;W of Greenwich</th>';
+    $body .= '<th>Description</th>';
   }
-  $body .= '<li>' . $walk['description'] . '</li>';
+  $body .= '<tr>';
+  $body .= '<td>' . $walk['latitude'] . '</td>';
+  $body .= '<td>' . $walk['longitude'] . '</td>';
+  $body .= '<td>' . $walk['description'] . '</td>';
+  $body .= '</tr>';
 }
 $body .= '</ol>';
 
