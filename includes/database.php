@@ -5,6 +5,11 @@
  * @file
  */
 
+# prevent users from accessing this page via their browser
+if ( !defined( 'ENTRYPOINT' ) ) {
+  die( 'This is not a valid entry point.' );
+}
+
 require dirname( __FILE__ ) . '/../config.php';
 /**
  * This function runs the query that will attempt to create the correct tables
@@ -21,7 +26,7 @@ function createDatabase() {
     hours float(12), distance float(12), PRIMARY KEY (id));
   CREATE TABLE tbl_locations (
      id int NOT NULL AUTO_INCREMENT, walkId int NOT NULL, latitude float(12), longitude float(12), timestamp float(12),
-     PRIMARY KEY (id), FOREIGN KEY (WalkId) REFERENCES tbl_routes(id));
+     PRIMARY KEY (id), FOREIGN KEY (walkId) REFERENCES tbl_routes(id));
    CREATE TABLE tbl_places (
      id int NOT NULL AUTO_INCREMENT, locationId int NOT NULL, description varchar(255),
      PRIMARY KEY (id), FOREIGN KEY (locationId) REFERENCES tbl_locations(id));
@@ -31,7 +36,7 @@ function createDatabase() {
 SQL;
 
   $query = executeSql( $sql );
-  if (!is_string($query)) {
+  if ( !is_string( $query ) ) {
     return FALSE;
   } else {
     return $query;
@@ -132,14 +137,14 @@ function openConnection() {
  * On success it will return a mysqli_result() object when the SQL statement is
  * a SELECT, SHOW, DESCRIBE or EXPLAIN. Other successes will return TRUE.
  *
- * Failures will return a string explaining the error. Use is_object() to 
+ * Failures will return a string explaining the error. Use is_object() to
  * discern between the error string and a result.
  */
 function executeSql( $sql ) {
   $db = openConnection();
   $query = mysqli_query( $db, $sql );
-  if ($query === FALSE) {
-    $query = mysqli_error($db);
+  if ( $query === FALSE ) {
+    $query = mysqli_error( $db );
   }
   closeDatabase( $db );
   return $query;

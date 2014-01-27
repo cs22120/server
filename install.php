@@ -35,7 +35,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
 } else {
   # installation is a go! (hopefully)
 
-  if ( isset($_POST['address']) ) {
+  if ( isset( $_POST['address'] ) ) {
 	$config = "<?php\n" .
 	  "\$DB_ADDR = '" . $_POST['address'] . "';\n" .
 	  "\$DB_PASS = '" . $_POST['password'] . "';\n" .
@@ -64,12 +64,12 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
   } else {
     require_once( 'includes/database.php' );
     $creator = createDatabase();
-    if ( is_object($creator) === FALSE ) {
+    if ( is_object( $creator ) === FALSE ) {
       die( render ( 'message', [
         'Table creation failed',
         'We tried to create the MySQL tables for you, but something went wrong. Please try again',
         $creator
-      ]));
+      ] ) );
     }
   }
 

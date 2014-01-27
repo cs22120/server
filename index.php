@@ -29,10 +29,7 @@ if ( !$WD ) { # realpath returns FALSE on failure
     $WD = dirname( __DIR__ );
 }
 
-# include default settings
-require_once( "$WD/includes/defaultSettings.php" );
-
-# try to get manual settings
+# try to get configuration
 if ( file_exists ( "$WD/config.php" ) ) {
   require_once "$WD/config.php";
 } else {
@@ -41,7 +38,7 @@ if ( file_exists ( "$WD/config.php" ) ) {
   die( 'Installation required!' );
 }
 
-if (isset($_GET["walk"])) {
+if ( isset( $_GET["walk"] ) ) {
   # we have a walk ID, display a walk
   require_once 'includes/walkDetail.php';
 } else {

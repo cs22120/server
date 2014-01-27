@@ -5,15 +5,16 @@
  * @file
  */
 
-#TODO: this is not a valid entry point, stop people from loading it in their
-#browsers.
+if ( !defined( 'ENTRYPOINT' ) ) {
+  die( 'Not a valid entry point.' );
+}
 
 require_once 'includes/database.php';
 require( 'includes/templates.php' );
 
 $result = executeSql( 'SELECT * from `tbl_routes`' );
-if ( is_object($result) === FALSE ) {
-  render( 'message', ['Database error', 'We were unable to get a list of walks.', $result ]);
+if ( is_object( $result ) === FALSE ) {
+  render( 'message', ['Database error', 'We were unable to get a list of walks.', $result ] );
   # something went wrong
 }
 $rows = "";

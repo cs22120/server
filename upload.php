@@ -8,6 +8,8 @@
  * @file
  */
 
+define( 'ENTRYPOINT', true );
+
 # we are outputting JSON; change away from defaults
 # some browsers will render JSON differently from plain
 # text (e.g. render it monospace; preserving new-lines)
