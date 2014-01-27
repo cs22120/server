@@ -62,28 +62,26 @@ function inputWalk( $walk ) {
     "NULL"
     ];
 
-  $db = openConnection();
+  $sql = 'INSERT INTO tbl_routes VALUES (' . implode( $values, ',' ) . ');';
 
-  $query = 'INSERT INTO tbl_routes VALUES (' . implode( $values, ',' ) . ');';
-  $sql =  mysqli_query( $db, $query );
-  if ( $sql ) {
+  $query = executeSql($sql);
+  if ( is_bool($query) && $query === TRUE) {
     # the SQL query worked and the data is stored
     # we need to request the data back to see what the ID has been set to
-    $sql = null; # we are reusing a variable; clearing it to be safe
-    $query = "SELECT * FROM tbl_routes WHERE title=$values[1];";
-    $sql =  mysqli_query( $db, $query );
-    if ( $sql === FALSE ) { return $query; }
-    $walkId = fetchID( $sql );
+    $query = executeSql("SELECT * FROM tbl_routes WHERE title=$values[1];");
+    if ( !is_object($query)) { return $query; }
+    $walkId = fetchID( $query );
 
+    $db = openConnection();
     foreach ( $walk -> locations as &$location ) {
       $query = null;
       $values = null;
       $values = [
         "NULL", # location ID
         $walkId,
-        "'" . mysql_real_escape_string( $db, $location->latitude ) . "'",
-        "'" . mysql_real_escape_string( $db, $location->longitude ) . "'",
-        "'" . mysql_real_escape_string( $db, $location->timestamp ) . "'"
+        "'" . mysqli_real_escape_string( $db, $location->latitude ) . "'",
+        "'" . mysqli_real_escape_string( $db, $location->longitude ) . "'",
+        "'" . mysqli_real_escape_string( $db, $location->timestamp ) . "'"
       ];
       $query = "INSERT INTO tbl_locations VALUES (" . implode( $values, ',' ) . ");";
       $sql =  mysqli_query( $db, $query );
@@ -93,7 +91,8 @@ function inputWalk( $walk ) {
 
       foreach ( $location -> descriptions as &$description ) {
         $description = mysqli_real_escape_string( $db, $description );
-        $query = "INSERT INTO tbl_places VALUES (null, $locID, '$description');";
+        # TODO: BUG: doesn't actually work...
+        $query = "INSERT INTO tbl_places VALUES (NULL, '$locID', '$description');";
         $sql = mysqli_query( $db, $sql );
         if ( $sql === FALSE ) { return mysqli_error( $db ); }
       }
