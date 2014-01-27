@@ -24,6 +24,12 @@ $secret = 'swordfish';
 # via die(), we can use successive if() statements without
 # needing else and elseif
 
+# test for config disallowing uploads
+include_once 'config.php';
+var_dump($DISABLEUPLOAD);
+if ($DISABLEUPLOAD === TRUE) {
+  output( 27, 'uploading has been disabled by the system administrator' );
+}
 # disallow GETs
 if ( $_SERVER['REQUEST_METHOD'] != 'POST' ) {
   header( 'HTTP/1.0 405 Method Not Allowed' );
@@ -206,6 +212,6 @@ function output ( $code, $msg, $suppress = false ) {
     $data['data'] = null;
   }
   # sending current API version will aid troubleshooting
-  $data['version'] = '0.1.1';
+  $data['version'] = '0.2.0';
   die( json_encode( $data, JSON_PRETTY_PRINT ) );
 }

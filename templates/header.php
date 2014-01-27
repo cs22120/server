@@ -7,4 +7,9 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Walking Tour Displayer</a>
+        </div>
+    </div>
     <div class="container">
