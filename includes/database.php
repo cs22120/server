@@ -64,12 +64,12 @@ function inputWalk( $walk ) {
 
   $sql = 'INSERT INTO tbl_routes VALUES (' . implode( $values, ',' ) . ');';
 
-  $query = executeSql($sql);
-  if ( is_bool($query) && $query === TRUE) {
+  $query = executeSql( $sql );
+  if ( is_bool( $query ) && $query === TRUE ) {
     # the SQL query worked and the data is stored
     # we need to request the data back to see what the ID has been set to
-    $query = executeSql("SELECT * FROM tbl_routes WHERE title=$values[1];");
-    if ( !is_object($query)) { return $query; }
+    $query = executeSql( "SELECT * FROM tbl_routes WHERE title=$values[1];" );
+    if ( !is_object( $query ) ) { return $query; }
     $walkId = fetchID( $query );
 
     $db = openConnection();
@@ -92,9 +92,9 @@ function inputWalk( $walk ) {
       foreach ( $location -> descriptions as &$description ) {
         $description = mysqli_real_escape_string( $db, $description );
         # TODO: BUG: doesn't actually work...
-        $query = "INSERT INTO tbl_places VALUES (NULL, '$locID', '$description');";
-        $sql = mysqli_query( $db, $sql );
-        if ( $sql === FALSE ) { return mysqli_error( $db ); }
+        $sql = "INSERT INTO tbl_places VALUES (NULL, '$locID', '$description');";
+        $query = mysqli_query( $db, $sql );
+        if ( $query === FALSE ) { return mysqli_error( $db ); }
       }
 
 
