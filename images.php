@@ -353,8 +353,8 @@ header( 'Content-Type: image/png' );
 echo $image;
 
 # save to file test
-$operation =  file_put_contents( 'uploads/lenna.png' , base64_decode( $string ) );
-if ( $OPERATION === FALSE ) {
+$operation =  file_put_contents( 'uploads/lenna.png', base64_decode( $string ) );
+if ( $operation === FALSE ) {
   die( 'Unable to save image: this is probably due to bad file perms. Use 4664 on ./uploads' );
 }
 ?>
