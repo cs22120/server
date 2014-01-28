@@ -177,6 +177,10 @@ foreach ( $route->locations as &$location ) {
     if ( count( $image ) != 2 ) {
       output( 28, "one or more image arrays are malformed" );
     }
+    # simplistic way of checking if name has an extension
+    if ( !strpos( $image[0], '.' ) ) {
+      output( 32, "$image[0] does not appear to have a file extension" );
+    }
     require_once 'includes/images.php';
     switch ( processImage( $image[0], $image[1] ) != FALSE ) {
       case 1:
