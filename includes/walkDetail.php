@@ -20,11 +20,13 @@ if ( !is_numeric( $id ) ) {
 }
 
 $sql = <<<SQL
-  SELECT * FROM tbl_routes
-  INNER JOIN tbl_locations
+  SELECT * FROM tbl_locations
+  INNER JOIN tbl_routes
   ON tbl_routes.id = tbl_locations.walkId
   INNER JOIN tbl_places
   ON tbl_locations.id = tbl_places.locationId
+  WHERE tbl_routes.id = 1
+  ORDER BY timestamp ASC
 SQL;
 
 $query = executeSql( $sql );
