@@ -139,6 +139,10 @@ foreach ( $route->locations as &$location ) {
   if ( !property_exists( $location, 'timestamp' ) ) {
     output( 18, "location $index has no timestamp" );
   }
+
+  if ( !is_numeric($location->timestamp) ) {
+    output( 29, "timestamp $index is not numeric" );
+  }
   if ( !property_exists( $location, 'descriptions' ) ) {
     output( 19, "location $index has no descriptions" );
   }
@@ -219,6 +223,6 @@ function output ( $code, $msg, $suppress = false ) {
     $data['data'] = null;
   }
   # sending current API version will aid troubleshooting
-  $data['version'] = '0.2.0';
+  $data['version'] = '1.0.1';
   die( json_encode( $data, JSON_PRETTY_PRINT ) );
 }
