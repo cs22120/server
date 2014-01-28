@@ -27,7 +27,7 @@ $sql = <<<SQL
   ON tbl_locations.id = tbl_places.locationId
 SQL;
 
-$query = executeSql($sql);
+$query = executeSql( $sql );
 if ( is_object( $query ) === FALSE ) {
   render( 'message', ['Database error', 'We were unable to get the details of your walk.', $query] );
   die();

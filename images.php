@@ -347,8 +347,14 @@ VDA1OjEzOjI4LTA1OjAw8c7O+gAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNC0wMS0yOFQwNToxMzoyOC0w
 NTowMICTdkYAAAAASUVORK5CYII=
 B64;
 
+# output test
 $image = base64_decode( $string );
-header('Content-Type: image/png');
+header( 'Content-Type: image/png' );
 echo $image;
 
+# save to file test
+$operation =  file_put_contents( 'uploads/lenna.png' , base64_decode( $string ) );
+if ( $OPERATION === FALSE ) {
+  die( 'Unable to save image: this is probably due to bad file perms. Use 4664 on ./uploads' );
+}
 ?>

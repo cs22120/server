@@ -1,4 +1,5 @@
 config.php
 *.swp
 *.docx
-errors
+uploads/*
+!uploads/index.php

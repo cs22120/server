@@ -26,8 +26,8 @@ $secret = 'swordfish';
 
 # test for config disallowing uploads
 include_once 'config.php';
-var_dump($DISABLEUPLOAD);
-if ($DISABLEUPLOAD === TRUE) {
+var_dump( $DISABLEUPLOAD );
+if ( $DISABLEUPLOAD === TRUE ) {
   output( 27, 'uploading has been disabled by the system administrator' );
 }
 # disallow GETs
