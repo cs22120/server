@@ -167,6 +167,14 @@ foreach ( $route->locations as &$location ) {
   if ( !is_array( $location->images ) ) {
     output( 25, "location $index has bad images (not an array)" );
   }
+  foreach ( $location->images as $image ) {
+    if ( !is_array( $image ) ) {
+      output( 27, "non-arrays are not in the image array" );
+    }
+    if ( count( $image ) != 2 ) {
+      output( 28, "one or more image arrays are malformed" );
+    }
+  }
 }
 
 # all tests passed; output the data as confirmation
