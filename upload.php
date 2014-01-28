@@ -140,7 +140,7 @@ foreach ( $route->locations as &$location ) {
     output( 18, "location $index has no timestamp" );
   }
 
-  if ( !is_numeric($location->timestamp) ) {
+  if ( !is_numeric( $location->timestamp ) ) {
     output( 29, "timestamp $index is not numeric" );
   }
   if ( !property_exists( $location, 'descriptions' ) ) {
@@ -177,9 +177,27 @@ foreach ( $route->locations as &$location ) {
     if ( count( $image ) != 2 ) {
       output( 28, "one or more image arrays are malformed" );
     }
+    require_once 'includes/images.php';
+    switch ( processImage( $image[0], $image[1] ) != FALSE ) {
+      case 1:
+        output( 29, "file name collision; $image[0] already exists and we won't clobber" );
+        break;
+      case 2:
+        output( 30, "$image[0] has bad base64 encoding; check and try again" );
+        break;
+      case 3:
+        header( "HTTP/1.1 500 Internal Server Error" );
+        output( 31, "file put failed; server error", true );
+        break;
+      case FALSE:
+        # it worked fine
+        continue;
+      default:
+        header( "HTTP/1.1 500 Internal Server Error" );
+        output( 32, "file upload failed; no further information available" );
+    }
   }
 }
-
 # all tests passed; output the data as confirmation
 require_once 'includes/database.php';
 $dbInput = inputWalk( $data->walk );
