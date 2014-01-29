@@ -63,7 +63,7 @@ while ( $row = mysqli_fetch_assoc( $result ) ) {
   $xml .= 'name="' . $name[$i] . '" ';
   $xml .= 'description="' . $description[$i] . '" ';
   $xml .= 'image="' . $image[$i] . '" ';
-  $xml .= '/>\n';
+  $xml .= '/>';
   $i = $i + 1;
 }
 
