@@ -1,5 +1,10 @@
 <?php
 // code borrowed from Google https://developers.google.com/maps/articles/phpsqlajax_v3
+
+if ( !defined( 'ENTRYPOINT' ) ) {
+  die('Not a valid entry point.');
+}
+
 function parseToXML( $htmlStr )
 {
 $xmlStr = str_replace( '<', '&lt;', $htmlStr );
