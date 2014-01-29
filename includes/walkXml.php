@@ -28,6 +28,7 @@ $i = 0;
 while ( $row = mysqli_fetch_assoc( $result ) ) {
   $name[$i] = $row['name'];
   $description[$i] = $row['description'];
+  $id[$i] = $row['id'];
   $i = $i + 1;
 }
 
@@ -65,9 +66,11 @@ while ( $row = mysqli_fetch_assoc( $result ) ) {
   $xml .= 'walkId="' . $row['walkId'] . '" ';
   $xml .= 'latitude="' . $row['latitude'] . '" ';
   $xml .= 'longitude="' . $row['longitude'] . '" ';
+  if($id[$i] == $row['id']){
   $xml .= 'name="' . $name[$i] . '" ';
   $xml .= 'description="' . $description[$i] . '" ';
   $xml .= 'image="' . $image[$i] . '" ';
+  }
   $xml .= '/>';
   $i = $i + 1;
 }
