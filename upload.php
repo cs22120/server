@@ -152,6 +152,7 @@ foreach ( $route->locations as &$location ) {
 
   if ( !property_exists( $location, 'name' ) ) {
     output( 33, "location $index has no name");
+  }
 
   # sanity check some
   # Latitude is drawn from the equator (0) to the poles at 90 and -90.
