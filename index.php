@@ -40,6 +40,8 @@ if ( file_exists ( "$WD/config.php" ) ) {
 
 if ( isset( $_GET["xml"] ) ) {
   require_once 'includes/walkXml.php';
+} else if ( isset( $_GET["credits"] ) ) {
+  require_once 'includes/credits.php';
 } else if ( isset( $_GET["walk"] ) ) {
   # we have a walk ID, display a walk
   require_once 'includes/walkDetail.php';
