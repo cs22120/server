@@ -150,6 +150,9 @@ foreach ( $route->locations as &$location ) {
     output( 20, "location $index has no images" );
   }
 
+  if ( !property_exists( $location, 'name' ) ) {
+    output( 33, "location $index has no name");
+
   # sanity check some
   # Latitude is drawn from the equator (0) to the poles at 90 and -90.
   if ( ( $location->latitude > 90 ) || ( $location->latitude < -90 ) ) {
@@ -166,6 +169,14 @@ foreach ( $route->locations as &$location ) {
   }
   if ( !is_array( $location->descriptions ) ) {
     output( 24, "location $index has bad descriptions (not an array)" );
+  }
+  foreach ( $location->descriptions as $description ) {
+    if ( !is_array( $description ) {
+      output( 33, "one or more descriptions are not in an array" );
+    }
+    if ( count( $description ) != 2 ) {
+      output( 34, "one or more description arrays are malformed" );
+    }
   }
   if ( !is_array( $location->images ) ) {
     output( 25, "location $index has bad images (not an array)" );

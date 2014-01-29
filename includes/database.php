@@ -90,14 +90,14 @@ function inputWalk( $walk ) {
       foreach ( $location -> descriptions as &$description ) {
         $description = mysqli_real_escape_string( $db, $description );
         # TODO: BUG: doesn't actually work...
-        $sql = "INSERT INTO tbl_places VALUES (NULL, '$locID', '$description');";
+        $sql = "INSERT INTO tbl_places VALUES (NULL, '$locID', '$description[0]', $description[1]);";
         $query = mysqli_query( $db, $sql );
         if ( $query === FALSE ) { return mysqli_error( $db ); }
       }
 
 
       foreach ( $location -> images as &$image ) {
-        $query = "INSERT INTO tbl_images VALUES (NULL, $locID, '$description');";
+        $query = "INSERT INTO tbl_images VALUES (NULL, $locID, '$image');";
         mysqli_query( $db, $sql );
       }
     }
