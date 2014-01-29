@@ -91,7 +91,7 @@ function inputWalk( $walk ) {
         $description[0] = mysqli_real_escape_string( $db, $description[0] );
         $description[1] = mysqli_real_escape_string( $db, $description[1] );
         # TODO: BUG: doesn't actually work...
-        $sql = "INSERT INTO tbl_places VALUES (NULL, '$locID', '$description[0]', $description[1]);";
+        $sql = "INSERT INTO tbl_places VALUES (NULL, '$locID', '$description[0]', '$description[1]');";
         $query = mysqli_query( $db, $sql );
         if ( $query === FALSE ) { return mysqli_error( $db ); }
       }
