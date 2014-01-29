@@ -28,7 +28,7 @@ function createDatabase() {
      id int NOT NULL AUTO_INCREMENT, walkId int NOT NULL, latitude float(12), longitude float(12), timestamp float(12),
      PRIMARY KEY (id), FOREIGN KEY (walkId) REFERENCES tbl_routes(id));
    CREATE TABLE tbl_places (
-     id int NOT NULL AUTO_INCREMENT, locationId int NOT NULL, description varchar(255),
+     id int NOT NULL AUTO_INCREMENT, locationId int NOT NULL, name varchar(255), description varchar(255),
      PRIMARY KEY (id), FOREIGN KEY (locationId) REFERENCES tbl_locations(id));
   CREATE TABLE tbl_images (
     id int NOT NULL AUTO_INCREMENT, placeId int NOT NULL, photoName varchar(255),
@@ -95,10 +95,12 @@ function inputWalk( $walk ) {
         if ( $query === FALSE ) { return mysqli_error( $db ); }
       }
 
-
       foreach ( $location -> images as &$image ) {
-        $query = "INSERT INTO tbl_images VALUES (NULL, $locID, '$image');";
-        mysqli_query( $db, $sql );
+        $sql = "INSERT INTO tbl_images VALUES (NULL, $locID, '$image[0]');";
+        $query = mysqli_query( $db, $sql );
+        if ( $query  === FALSE ) {
+          return mysqli_error( $db );
+        }
       }
     }
 
@@ -153,14 +155,4 @@ function executeSql( $sql ) {
  */
 function closeDatabase( $db ) {
   mysqli_close( $db );
-}
-
-/**
- * Fetches the first field of the first row of a result
- * @param The result to fetch
- * @return the first field of the first row
- * @deprecated
- */
-function fetchID( mysqli_result $result ) {
-  return $result->fetch_row()[0];
 }

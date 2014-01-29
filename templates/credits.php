@@ -1,4 +1,4 @@
-<?php require_once( 'templates/header.php' );?>
+<?php require_once( 'templates/header.php' ); ?>
 <h1>Credits</h1>
 <h2>Contributors</h2>
 <h3>Walking Tour Project</h3>
@@ -20,7 +20,7 @@ The following people contributed to the <em>Walking Tour Project</em>:
 <h3>Google Maps API</h3>
 <p>Google Maps API is &copy; <a href="http://google.com">Google</a>, 2014.</p>
 
-<?php if(isset($data)){ ?>
+<?php if ( isset( $data ) ) { ?>
 <h2>Version information</h2>
 The last commit reason is replicated below:
 <pre><?php echo $data ?></pre>
