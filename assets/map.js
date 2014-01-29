@@ -1,5 +1,7 @@
 //code borrowed from Google https://developers.google.com/maps/articles/phpsqlajax_v3
 
+window.onload = load;
+
 var customIcons = {
     icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png'
 };
