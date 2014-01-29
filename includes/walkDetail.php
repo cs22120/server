@@ -25,7 +25,7 @@ $sql = <<<SQL
   ON tbl_routes.id = tbl_locations.walkId
   INNER JOIN tbl_places
   ON tbl_locations.id = tbl_places.locationId
-  WHERE tbl_routes.id = 1
+  WHERE tbl_routes.id = $id
   ORDER BY timestamp ASC
 SQL;
 
@@ -36,7 +36,7 @@ if ( is_object( $query ) === FALSE ) {
 }
 if ( $query->num_rows == 0 ) {
   header( 'HTTP/1.1 404 File Not Found' );
-  render( 'message', ['Error 404: Walk not found', 'Please check the walk ID and try again.'] );
+  render( 'message', ['Error 404: Walk not found', 'Please check the walk ID and try again.', var_dump( $query )] );
   die();
 }
 

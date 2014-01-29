@@ -64,15 +64,13 @@ function inputWalk( $walk ) {
 
   $sql = 'INSERT INTO tbl_routes VALUES (' . implode( $values, ',' ) . ');';
 
-  $query = executeSql( $sql );
+  $db = openConnection();
+  $query = mysqli_query( $db, $sql );
+  var_dump($query);
   if ( is_bool( $query ) && $query === TRUE ) {
     # the SQL query worked and the data is stored
     # we need to request the data back to see what the ID has been set to
-    $query = executeSql( "SELECT * FROM tbl_routes WHERE title=$values[1];" );
-    if ( !is_object( $query ) ) { return $query; }
-    $walkId = fetchID( $query );
-
-    $db = openConnection();
+    $walkId = mysqli_insert_id( $db );
     foreach ( $walk -> locations as &$location ) {
       $query = null;
       $values = null;
