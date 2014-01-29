@@ -99,8 +99,8 @@ function inputWalk( $walk ) {
 
 
       foreach ( $location -> images as &$image ) {
-        $query = "INSERT INTO tbl_images VALUES(null, $locID, '$description');";
-         mysqli_query( $db, $sql );
+        $query = "INSERT INTO tbl_images VALUES (NULL, $locID, '$description');";
+        mysqli_query( $db, $sql );
       }
     }
 
