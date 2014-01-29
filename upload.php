@@ -171,7 +171,7 @@ foreach ( $route->locations as &$location ) {
     output( 24, "location $index has bad descriptions (not an array)" );
   }
   foreach ( $location->descriptions as $description ) {
-    if ( !is_array( $description ) {
+    if ( !is_array( $description ) ) {
       output( 33, "one or more descriptions are not in an array" );
     }
     if ( count( $description ) != 2 ) {
