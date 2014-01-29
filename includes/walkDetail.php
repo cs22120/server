@@ -46,7 +46,7 @@ while ( $walk = $query->fetch_assoc() ) {
     $body .= '<h1>' . $walk['title'] . '</h1>';
     $body .= '<p class="lead">' . $walk['longDesc'] . '</p>';
     $body .= '<table class="table table-striped">';
-    $body .= '<tr><th>&deg;N of the Equator</th><th>&deg;W of Greenwich</th>';
+    $body .= '<tr><th>&deg;N of the Equator</th><th>&deg;E of Greenwich</th>';
     $body .= '<th>Description</th>';
   }
   $body .= '<tr>';
