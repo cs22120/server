@@ -88,7 +88,8 @@ function inputWalk( $walk ) {
       $locID = mysqli_insert_id( $db );
 
       foreach ( $location -> descriptions as &$description ) {
-        $description = mysqli_real_escape_string( $db, $description );
+        $description[0] = mysqli_real_escape_string( $db, $description[0] );
+        $description[1] = mysqli_real_escape_string( $db, $description[1] );
         # TODO: BUG: doesn't actually work...
         $sql = "INSERT INTO tbl_places VALUES (NULL, '$locID', '$description[0]', $description[1]);";
         $query = mysqli_query( $db, $sql );
