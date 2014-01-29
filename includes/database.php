@@ -66,7 +66,6 @@ function inputWalk( $walk ) {
 
   $db = openConnection();
   $query = mysqli_query( $db, $sql );
-  var_dump($query);
   if ( is_bool( $query ) && $query === TRUE ) {
     # the SQL query worked and the data is stored
     # we need to request the data back to see what the ID has been set to

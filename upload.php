@@ -151,7 +151,7 @@ foreach ( $route->locations as &$location ) {
   }
 
   if ( !property_exists( $location, 'name' ) ) {
-    output( 33, "location $index has no name");
+    output( 33, "location $index has no name" );
   }
 
   # sanity check some
