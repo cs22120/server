@@ -38,7 +38,9 @@ if ( file_exists ( "$WD/config.php" ) ) {
   die( 'Installation required!' );
 }
 
-if ( isset( $_GET["walk"] ) ) {
+if ( isset( $_GET["xml"] ) ) {
+  require_once 'includes/walkXml.php';
+} else if ( isset( $_GET["walk"] ) ) {
   # we have a walk ID, display a walk
   require_once 'includes/walkDetail.php';
 } else {

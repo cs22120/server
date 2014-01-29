@@ -17,7 +17,7 @@
     var customIcons = {
         icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png'
     };
-	
+
 
     function load() {
       var map = new google.maps.Map(document.getElementById("map"), {

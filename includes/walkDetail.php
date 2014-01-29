@@ -36,7 +36,7 @@ if ( is_object( $query ) === FALSE ) {
 }
 if ( $query->num_rows == 0 ) {
   header( 'HTTP/1.1 404 File Not Found' );
-  render( 'message', ['Error 404: Walk not found', 'Please check the walk ID and try again.', var_dump( $query )] );
+  render( 'message', ['Error 404: Walk not found', 'Please check the walk ID and try again.', ( var_export( $query, true ) )] );
   die();
 }
 
@@ -47,7 +47,7 @@ while ( $walk = $query->fetch_assoc() ) {
     $body .= '<p class="lead">' . $walk['longDesc'] . '</p>';
     $body .= '<table class="table table-striped">';
     $body .= '<tr><th>&deg;N of the Equator</th><th>&deg;E of Greenwich</th>';
-    $body .= '<th>Description</th>';
+    $body .= '<th>Description</th></tr>';
   }
   $body .= '<tr>';
   $body .= '<td>' . $walk['latitude'] . '</td>';
@@ -55,7 +55,7 @@ while ( $walk = $query->fetch_assoc() ) {
   $body .= '<td>' . $walk['description'] . '</td>';
   $body .= '</tr>';
 }
-$body .= '</ol>';
+$body .= '</table>';
 
 render( 'skeleton', $body );
 
