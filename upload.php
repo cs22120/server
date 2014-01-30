@@ -198,7 +198,7 @@ foreach ( $route->locations as &$location ) {
     require_once 'includes/images.php';
     $imageStatus = processImage( $image[0], $image[1] );
     var_dump($imageStatus);
-    switch ( $imageStatus ) ) {
+    switch ( $imageStatus ) {
       case 1:
         output( 29, "file name collision; $image[0] already exists and we won't clobber" );
         break;
