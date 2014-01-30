@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello</title>
+    <title>Walking Tour Displayer Group 02</title>
     <meta charset="utf-8">
     <!-- Bootstrap CDN: (c) Twitter; MIT licence -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
