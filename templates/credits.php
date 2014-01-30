@@ -4,7 +4,7 @@
 <h3>Walking Tour Project</h3>
 The following people contributed to the <em>Walking Tour Project</em>:
 <ul>
-    <li>Dillion Cuffe</li>
+    <li>Dillon Cuffe</li>
     <li>Christopher Edwards</li>
     <li>Douglas Gardner</li>
     <li>Luke Horwood</li>
