@@ -24,10 +24,11 @@ function load() {
       var name = markers[i].getAttribute("name");
       var description = markers[i].getAttribute("description");
       var url = markers[i].getAttribute("image");
+	  var poiNo = markers[i].getAttribute("poiNo");
       var point = new google.maps.LatLng(
           parseFloat(markers[i].getAttribute("latitude")),
           parseFloat(markers[i].getAttribute("longitude")));
-      var html = "<center><b> Point " + id + " - " + name + "</b> <br/>" + description + "<br /> <img src=" + url + "></center>";
+      var html = "<center><b> Point " + poiNo + " - " + name + "</b> <br/>" + description + "<br /> <img width='100px' height='100px' src='http://users.aber.ac.uk/che16/php/server/uploads/" + url + "'></center>";
       var icon = customIcons[id] || {};
       var marker = new google.maps.Marker({
         map: map,
