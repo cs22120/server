@@ -27,6 +27,8 @@ while ( $walk = $result->fetch_assoc() ) {
   $rows .= $walk['title'];
   $rows .= '</a></td><td>';
   $rows .= $walk['shortDesc'];
+  $rows .= '</td><td>';
+  $rows .= $walk['longDesc'];
   $rows .= '</td></tr>';
 }
 render( 'homepage', $rows );
