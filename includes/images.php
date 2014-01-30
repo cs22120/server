@@ -18,16 +18,15 @@
 function processImage( $name, $string ) {
   if ( file_exists ( 'uploads/' . $name ) === TRUE ) {
     return 1;
-  }
-  # the latter argument forces strict decoding
-  $image = base64_decode( $string, TRUE );
-  if ( !$image ) {
-    return 2;
-  }
-  if ( file_put_contents( 'uploads/' . $name, $image ) ) {
-    return FALSE;
   } else {
-    return 3;
+    $image = base64_decode( $string, TRUE );
+    if ( !$image ) {
+      return 2;
+    } else if ( file_put_contents( 'uploads/' . $name, $image ) ) {
+      return FALSE;
+    } else {
+      return 3;
+    }
   }
 }
 
