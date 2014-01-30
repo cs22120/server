@@ -13,7 +13,7 @@
     <script type="text/javascript" src="assets/map.js"></script>
     <style>
     #map  {
-        min-height: 200px;
+        min-height: 600px;
     }
     </style>
 

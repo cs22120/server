@@ -59,8 +59,10 @@ $xml .= '<markers>';
 
 // Iterate through the rows, printing XML nodes for each
 $i = 0;
+$j = 1;
 while ( $row = mysqli_fetch_assoc( $result ) ) {
   // ADD TO XML DOCUMENT NODE
+  if((isset($_GET['walk'])) && ($row['walkId'] == $_GET['walk'])){
   $xml .= '<marker ';
   $xml .= 'id="' . $row['id'] . '" ';
   $xml .= 'walkId="' . $row['walkId'] . '" ';
@@ -71,7 +73,10 @@ while ( $row = mysqli_fetch_assoc( $result ) ) {
   $xml .= 'description="' . $description[$i] . '" ';
   $xml .= 'image="' . $image[$i] . '" ';
   }
+  $xml .= 'poiNo="' . $j . '" ';
+  $j = $j + 1;
   $xml .= '/>';
+  }
   $i = $i + 1;
 }
 
