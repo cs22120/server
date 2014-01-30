@@ -37,8 +37,29 @@ function load() {
       });
       bindInfoWindow(marker, map, infoWindow, html);
     }
+	
+	
   });
+  
+  //borrowed from http://forums.asp.net/t/1952508.aspx?Draw+lines+between+markers+on+Google+Map+
+  var line = [
+    new google.maps.LatLng(52.4140, -4.0810),
+    new google.maps.LatLng(21.291982, -157.821856),
+    new google.maps.LatLng(-18.142599, 178.431),
+    new google.maps.LatLng(-27.46758, 153.027892)
+  ];
+  var linePath = new google.maps.Polyline({
+    path: line,
+    geodesic: true,
+    strokeColor: '#78AB46',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+  
+  linePath.setMap(map);
 }
+
+ 
 
 function bindInfoWindow(marker, map, infoWindow, html) {
   google.maps.event.addListener(marker, 'click', function() {
@@ -66,4 +87,3 @@ function downloadUrl(url, callback) {
 function doNothing() {}
 
 //]]>
-
