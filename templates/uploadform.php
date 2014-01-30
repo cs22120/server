@@ -22,36 +22,24 @@
         "locations": [
             {
                 "latitude": 51.5034,
-                "longitude": 0.1276,
+                "longitude": -0.1276,
                 "timestamp": 0,
                 "descriptions": [
-                    "10 Downing Street"
-                ],
-                "images": [
-                    "no10door",
-                    "primeminister"
-                ]
-            },
-            {
-                "latitude": 51.5068,
-                "longitude": 0.1287,
-                "timestamp": 20,
-                "descriptions": [
-                    "Admiralty Arch"
+                    ["Downing Street","The residence of the Prime Minister."],
+                    ["10 Downing Street", "Where the PM lives."]
                 ],
                 "images": [
                 ]
             },
             {
                 "latitude": 51.4986,
-                "longitude": 0.1331,
+                "longitude": -0.1331,
                 "timestamp": 60,
                 "descriptions": [
-                    "New Scotland Yard",
-                    "Metropolitan Police HQ"
+                    ["New Scotland Yard","The home of the Met"],
+                    ["Metropolitan Police HQ","Also known as New Scotland Yard"]
                 ],
                 "images": [
-                    "revolvingsign"
                 ]
             }
         ]
