@@ -6,6 +6,7 @@
         <tr>
             <th>Name</th>
             <th>Description</th>
+			<th>Long Description</th>
         </tr>
     </thead>
     <tbody>
