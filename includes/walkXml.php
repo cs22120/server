@@ -68,7 +68,7 @@ while ( $row = mysqli_fetch_assoc( $result ) ) {
   $xml .= 'walkId="' . $row['walkId'] . '" ';
   $xml .= 'latitude="' . $row['latitude'] . '" ';
   $xml .= 'longitude="' . $row['longitude'] . '" ';
-  $xml .= 'timestamp="'. $row['timestamp'] . '" ';
+  $xml .= 'timestamp="' . $row['timestamp'] . '" ';
   if ( $id[$i] == $row['id'] ) {
   $xml .= 'name="' . $name[$i] . '" ';
   $xml .= 'description="' . $description[$i] . '" ';

@@ -48,7 +48,7 @@ function load() {
 	  hours = "0" + hours;
 	  }
       var html = "<center><b> Point " + poiNo + " - " + name + " - " + hours + ":" + mins + ":" + secs + "</b> <br/>" + description + "<br /> <img width='100px' height='100px' src='http://users.aber.ac.uk/che16/php/server/uploads/" + url + "'></center>";
-	 
+
       var icon = customIcons[id] || {};
       var marker = new google.maps.Marker({
         map: map,
@@ -68,7 +68,7 @@ function load() {
     strokeOpacity: 1.0,
     strokeWeight: 2
   });
-  
+
  linePath.setMap(map);
   });
 
@@ -76,7 +76,7 @@ function load() {
 
 
 
- 
+
 
 function bindInfoWindow(marker, map, infoWindow, html) {
   google.maps.event.addListener(marker, 'click', function() {

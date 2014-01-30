@@ -49,13 +49,15 @@ while ( $walk = $query->fetch_assoc() ) {
     $body .= '<table class="table table-striped">';
     $body .= '<tr><th>&deg;N of the Equator</th><th>&deg;E of Greenwich</th>';
     $body .= '<th>Name</th>';
-    $body .= '<th>Description</th></tr>';
+    $body .= '<th>Description</th>';
+    $body .= '<th>Timestamp</th></tr>';
   }
   $body .= '<tr>';
   $body .= '<td>' . $walk['latitude'] . '</td>';
   $body .= '<td>' . $walk['longitude'] . '</td>';
   $body .= '<td>' . $walk['name'] . '</td>';
   $body .= '<td>' . $walk['description'] . '</td>';
+  $body .= '<td>' . $walk['timestamp'] . '</td>';
   $body .= '</tr>';
 }
 $body .= '</table>';
