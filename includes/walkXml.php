@@ -62,7 +62,7 @@ $i = 0;
 $j = 1;
 while ( $row = mysqli_fetch_assoc( $result ) ) {
   // ADD TO XML DOCUMENT NODE
-  if((isset($_GET['walk'])) && ($row['walkId'] == $_GET['walk'])){
+  if ( ( isset( $_GET['walk'] ) ) && ( $row['walkId'] == $_GET['walk'] ) ) {
   $xml .= '<marker ';
   $xml .= 'id="' . $row['id'] . '" ';
   $xml .= 'walkId="' . $row['walkId'] . '" ';
