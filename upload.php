@@ -196,7 +196,7 @@ foreach ( $route->locations as &$location ) {
       output( 32, "$image[0] does not appear to have a file extension" );
     }
     require_once 'includes/images.php';
-    switch ( processImage( $image[0], $image[1] ) != FALSE ) {
+    switch ( processImage( $image[0], $image[1] ) ) {
       case 1:
         output( 29, "file name collision; $image[0] already exists and we won't clobber" );
         break;
